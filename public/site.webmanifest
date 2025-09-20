@@ -1,0 +1,17 @@
+{
+  "name": "Fleura - Premium Flower Shop",
+  "short_name": "Fleura",
+  "description": "Premium flower arrangements and fresh flowers for every occasion",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#e11d48",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "/"
+}
