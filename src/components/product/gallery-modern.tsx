@@ -80,9 +80,8 @@ export default function Gallery({
               size="icon"
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm"
               onClick={() => {
-                const newImageIndex = previousImageIndex.toString();
-                updateImage(newImageIndex);
-                updateURL(newImageIndex);
+                const newState = updateImage(previousImageIndex.toString());
+                updateURL(newState);
               }}
             >
               <ArrowLeftIcon className="h-4 w-4" />
@@ -92,9 +91,8 @@ export default function Gallery({
               size="icon"
               className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm"
               onClick={() => {
-                const newImageIndex = nextImageIndex.toString();
-                updateImage(newImageIndex);
-                updateURL(newImageIndex);
+                const newState = updateImage(nextImageIndex.toString());
+                updateURL(newState);
               }}
             >
               <ArrowRightIcon className="h-4 w-4" />
@@ -130,8 +128,8 @@ export default function Gallery({
               <button
                 key={image.src}
                 onClick={() => {
-                  updateImage(index.toString());
-                  updateURL(index.toString());
+                  const newState = updateImage(index.toString());
+                  updateURL(newState);
                 }}
                 className={`relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg border-2 transition-colors ${
                   isActive ? 'border-primary' : 'border-border hover:border-muted-foreground'

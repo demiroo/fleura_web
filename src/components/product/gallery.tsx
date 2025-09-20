@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Card } from "@/components/ui/card";
 import { getOptimizedImageUrl, productImageConfig } from "@/lib/image-utils";
+import { GridTileImage } from "@/components/grid/tile";
 
 export default function Gallery({
   images,

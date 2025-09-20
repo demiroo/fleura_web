@@ -162,7 +162,7 @@ export async function logoutCustomer(customerAccessToken: string): Promise<{ suc
   try {
     const res = await shopifyFetchClient<ShopifyCustomerAccessTokenDeleteOperation>({
       query: customerAccessTokenDeleteMutation,
-      variables: { customerAccessToken },
+      variables: { customerAccessToken } as any,
       cache: "no-store",
       suppressErrorLogging: true, // Suppress errors since logout should work locally anyway
     });
@@ -186,7 +186,7 @@ export async function getCustomer(customerAccessToken: string): Promise<Customer
   try {
     const res = await shopifyFetchClient<ShopifyCustomerOperation>({
       query: getCustomerQuery,
-      variables: { customerAccessToken },
+      variables: { customerAccessToken } as any,
       cache: "no-store",
     });
 
@@ -209,7 +209,7 @@ export async function updateCustomer(
 ): Promise<{ customer?: Customer; customerAccessToken?: CustomerAccessToken; errors: any[] }> {
   const res = await shopifyFetchClient<ShopifyCustomerUpdateOperation>({
     query: customerUpdateMutation,
-    variables: { customerAccessToken, customer },
+    variables: { customerAccessToken, customer } as any,
     cache: "no-store",
   });
 
@@ -229,11 +229,11 @@ export async function getCustomerOrders(
   try {
     const res = await shopifyFetchClient({
       query: getCustomerOrdersQuery,
-      variables: { customerAccessToken, first },
+      variables: { customerAccessToken, first } as any,
       cache: "no-store",
     });
 
-    const customer = res.body.data.customer;
+    const customer = (res.body as any).data.customer;
     if (!customer?.orders) return [];
 
     return removeEdgesAndNodes(customer.orders).map((order: any) => ({
@@ -263,7 +263,7 @@ export async function createCustomerAddress(
 ): Promise<{ customerAddress?: CustomerAddress; errors: any[] }> {
   const res = await shopifyFetchClient<ShopifyCustomerAddressCreateOperation>({
     query: customerAddressCreateMutation,
-    variables: { customerAccessToken, address },
+    variables: { customerAccessToken, address } as any,
     cache: "no-store",
   });
 
@@ -282,11 +282,11 @@ export async function getCustomerAddresses(customerAccessToken: string): Promise
   try {
     const res = await shopifyFetchClient({
       query: getCustomerAddressesQuery,
-      variables: { customerAccessToken },
+      variables: { customerAccessToken } as any,
       cache: "no-store",
     });
 
-    const customer = res.body.data.customer;
+    const customer = (res.body as any).data.customer;
     if (!customer) return { addresses: [] };
 
     return {

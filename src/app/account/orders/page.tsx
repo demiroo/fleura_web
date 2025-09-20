@@ -131,10 +131,10 @@ export default function OrdersPage() {
                     </div>
                     <div className="flex flex-col sm:items-end space-y-2">
                       <p className="text-lg font-semibold">
-                        {(order.totalPrice || order.currentTotalPrice) ? 
-                          `${(order.totalPrice || order.currentTotalPrice).currencyCode} ${(order.totalPrice || order.currentTotalPrice).amount}` : 
-                          'Price unavailable'
-                        }
+                        {(() => {
+                          const price = order.totalPrice || order.currentTotalPrice;
+                          return price ? `${price.currencyCode} ${price.amount}` : 'Price unavailable';
+                        })()}
                       </p>
                       <div className="flex space-x-2">
                         {order.financialStatus && (

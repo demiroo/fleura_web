@@ -449,7 +449,8 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
     "products/delete",
     "products/update",
   ];
-  const topic = headers().get("x-shopify-topic") || "unknown";
+  const headersList = await headers();
+  const topic = headersList.get("x-shopify-topic") || "unknown";
   const secret = req.nextUrl.searchParams.get("secret");
   const isCollectionUpdate = collectionWebhooks.includes(topic);
   const isProductUpdate = productWebhooks.includes(topic);
@@ -612,11 +613,11 @@ export async function getCustomerOrders(
   try {
     const res = await shopifyFetch({
       query: getCustomerOrdersQuery,
-      variables: { customerAccessToken, first },
+      variables: { customerAccessToken, first } as any,
       cache: "no-store",
     });
 
-    const customer = res.body.data.customer;
+    const customer = (res.body as any).data.customer;
     if (!customer?.orders) return [];
 
     return removeEdgesAndNodes(customer.orders).map((order: any) => ({
@@ -665,11 +666,11 @@ export async function getCustomerAddresses(customerAccessToken: string): Promise
   try {
     const res = await shopifyFetch({
       query: getCustomerAddressesQuery,
-      variables: { customerAccessToken },
+      variables: { customerAccessToken } as any,
       cache: "no-store",
     });
 
-    const customer = res.body.data.customer;
+    const customer = (res.body as any).data.customer;
     if (!customer) return { addresses: [] };
 
     return {

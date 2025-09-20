@@ -2,7 +2,6 @@ import { RelatedProductGrid } from "@/components/product/product-grid";
 import Gallery from "@/components/product/gallery-modern";
 import { ProductProvider } from "@/components/product/product-context";
 import { ProductDescription } from "@/components/product/product-description";
-import ProductDebug from "@/components/debug/product-debug";
 import { HIDDEN_PRODUCT_TAG } from "@/lib/constants";
 import { getProduct, getProductRecommendations } from "@/lib/shopify";
 import { Image } from "@/lib/shopify/types";
@@ -73,8 +72,6 @@ export default async function ProductPage({
 
         {/* Main Product Section */}
         <div className="container mx-auto max-w-7xl px-4 py-8">
-          <ProductDebug product={product} />
-          
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
             {/* Product Gallery */}
             <div className="lg:col-span-7">

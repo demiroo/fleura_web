@@ -21,19 +21,6 @@ export default async function SearchPage({
   
   return (
     <>
-      {/* Debug info */}
-      <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded border border-blue-200 dark:border-blue-800 mb-4">
-        <h3 className="font-bold text-blue-800 dark:text-blue-200 mb-2">🔍 Search Debug</h3>
-        <div className="text-sm text-blue-700 dark:text-blue-300">
-          <p><strong>Search Query:</strong> {searchValue || 'None (showing all products)'}</p>
-          <p><strong>Sort:</strong> {sort || 'default'}</p>
-          <p><strong>Products Found:</strong> {products.length}</p>
-          {products.length > 0 && (
-            <p><strong>First Product Images:</strong> {products[0]?.images?.length || 0}</p>
-          )}
-        </div>
-      </div>
-
       {searchValue ? (
         <p className="mb-4">
           {products.length === 0
